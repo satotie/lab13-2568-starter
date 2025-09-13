@@ -8,6 +8,7 @@ import {
   Group,
   Checkbox,
   ActionIcon,
+  Badge,
 } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 import { useState } from "react";
@@ -40,7 +41,14 @@ export default function HomePage() {
             <Card withBorder shadow="sm" radius="md" mb="sm" key={task.id}>
               <Group justify="space-between" align="flex-start">
                 <Stack>
-                  {/* เพิ่ม assignees ตรงนี้*/}
+                  <Group gap="sm">
+                    {task.assignees.map((assignee: string, i: number) => (
+                      <Badge key={i} variant="light" color="blue">
+                        {assignee}
+                      </Badge>
+                    ))}
+                  </Group>
+
                   <Text
                     fw={600}
                     td={task.isDone ? "line-through" : "none"}
@@ -62,7 +70,7 @@ export default function HomePage() {
                     </Text>
                   )}
                   {task.doneAt && (
-                    <Text size="xs" c="chanadda">
+                    <Text size="xs" c="Thanakorn">
                       Done at: {dayjs(task.doneAt).format("ddd MMM DD YYYY")}
                     </Text>
                   )}
